@@ -1,3 +1,3 @@
 export * from './home/home';
-export * from './settings/settingsScreen';
+export * from './kpi/kpiScreen';
 export * from './login';

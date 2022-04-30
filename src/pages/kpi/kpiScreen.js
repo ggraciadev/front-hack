@@ -3,19 +3,15 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import useAuth from '../../hooks/useAuth';
 
-function SettingsScreen() {
+function KPIScreen() {
 
     const { signOut } = useAuth();
     
     return(
         <View>
-            <Text>Welcome to the settings screen</Text>
-            <Button
-                title="LogOut"
-                onPress={() => signOut()}
-            />
+            <Text>Welcome to the KPI's screen</Text>
         </View>
     )
 }
 
-export { SettingsScreen }
+export { KPIScreen }
