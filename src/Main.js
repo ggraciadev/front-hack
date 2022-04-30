@@ -5,7 +5,7 @@ import { KPINavigator , SidebarNavigator} from "./navigators";
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthContext } from './context/authContext';
 import { SignInScreen, SignUpScreen, HomeScreen, KPISelectorScreen } from './pages';
-import { Image } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
@@ -43,11 +43,15 @@ function Main() {
                 </Stack.Navigator>
             </NavigationContainer>
         ) : ( 
-            <NavigationContainer>
-                <SidebarNavigator/>
-            </NavigationContainer>
+            <SidebarNavigator/>
         )
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 10
+    }
+})
 
 export { Main }
