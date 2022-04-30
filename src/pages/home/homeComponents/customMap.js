@@ -3,9 +3,13 @@ import { StyleSheet, ActivityIndicator, View, Image } from 'react-native';
 import MapView, {  Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import CustomButton from '../../../utils/customButton';
-import useAuth from '../../../hooks/useAuth'
+import useLocation from '../../../hooks/useLocation';
+import CustomMapPoints from './customMapPoints';
 
 const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, routeActivate, ActivateRoute, mapFilter, onChangeFilter, ChangeRoutingInfo}) => {
+
+  const {getSites} = useLocation();
+
 
   const [location,setLocation] = useState({
       latitude:41.3887900,
@@ -23,6 +27,17 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, r
 
   var centerPositionReload;
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [sites, setSites] = useState([]);
+
+  const InitSites = async () => {
+    let pointsToShow = await getSites();
+    let temp = Object.entries(pointsToShow);
+    setSites(temp);
+    setIsLoading(false);
+  }
+
   useEffect(async () => {
     
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -32,6 +47,7 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, r
     }
     let location = await Location.getCurrentPositionAsync({});
     centerPositionReload = true;
+    await InitSites();
     setLocation({
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
@@ -75,6 +91,10 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, r
               latitude: latitude, longitude: longitude
             }}
           />
+
+        <CustomMapPoints
+          sites={sites}
+        />  
 
         </MapView>
                 
