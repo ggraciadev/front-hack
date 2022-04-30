@@ -2,7 +2,7 @@ import { Marker } from 'react-native-maps';
 import React, {  useEffect } from 'react';
 import { Image } from 'react-native';
 
-export default ({chargePoints, OpenStationInfo,searchedPoint}) => {
+export default ({chargePoints, OpenStationInfo, searchedPoint}) => {
 
     const IsFavStation = (station) => {
         let ret = auth?.user?.favourites?.includes(station?.id?.toString());

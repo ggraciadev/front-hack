@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
 import Modal from 'react-native-modal';
-import Button from './button';
-import i18n from 'i18n-js';
+import Button from './customButton';
 
 export default ({isVisible, handleCancel, handleAccept, title, subtitle}) => {
 
@@ -28,14 +27,14 @@ export default ({isVisible, handleCancel, handleAccept, title, subtitle}) => {
                     <Button
                         customStyles={styles.acceptButton}
                         onPress={handleAccept}
-                        text={i18n.t('miscelaneus.accept')}
+                        text="Accept"
                     />
                     {
                         handleCancel ?
                         <Button
                             customStyles={styles.cancelButton}
                             onPress={handleCancel}
-                            text={i18n.t('miscelaneus.cancel')}
+                            text="Cancel"
                         />
                         : null
                     }

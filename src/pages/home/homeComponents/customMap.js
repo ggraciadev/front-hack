@@ -5,6 +5,7 @@ import * as Location from 'expo-location';
 import CustomButton from '../../../utils/customButton';
 import useLocation from '../../../hooks/useLocation';
 import CustomMapPoints from './customMapPoints';
+import CustomModal from '../../../utils/customModal';
 
 const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, routeActivate, ActivateRoute, mapFilter, onChangeFilter, ChangeRoutingInfo}) => {
 
@@ -70,12 +71,14 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, r
     , 1500)
   }
 
+  
+
   const {latitude,longitude} = location;
 
   //0 -> Available, 1 -> Occupied, 2 -> Faulted, 
   //3 -> Unavailable, 4 -> Reserved, 5 -> Charging
 
-
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
       <View style ={styles.mapContent}>
@@ -94,14 +97,20 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, r
 
         <CustomMapPoints
           sites={sites}
+          OpenStationInfo={() => setModalVisible(true)}
         />  
 
         </MapView>
-                
+        
+        <CustomModal
+          isVisible={modalVisible}
+          handleAccept = {() => closeAndGoTo()}
+        />
             
         <CustomButton
-        customStyles={[styles.floatingButton, styles.rightFloat]}
-        source={require('../../../../assets/images/center.png')}
+          OpenStationInfo = {OpenStationInfo}
+          customStyles={[styles.floatingButton, styles.rightFloat]}
+          source={require('../../../../assets/images/center.png')}
         />
         
     </View>

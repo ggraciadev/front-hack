@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable, Dimensions} from "react-native";
 import { useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import useAuth from '../../hooks/useAuth';
@@ -10,15 +10,25 @@ import {
     ContributionGraph,
     StackedBarChart
   } from "react-native-chart-kit";
-import CustomButton from "../../utils/customButton";
+import { KPIPurchases, KPISales } from "./components";
 
-function KPIScreen() {
-    return (
-        <ScrollView style={styles.container}>
-            
-        </ScrollView>
+function KPIScreen(kpi) {
+  const kpiType = kpi.route.params.kpi;
+  switch (kpiType) {
+    case "purchases":
+      return(
+        <KPIPurchases />
       );
-      
+      break;
+    case "sales":
+      return(
+        <KPISales/>
+      );
+        break;
+  
+    default:
+      break;
+  }      
 }
 
 const styles = StyleSheet.create({

@@ -12,7 +12,7 @@ import {
   } from "react-native-chart-kit";
 import CustomButton from "../../utils/customButton";
 
-function KPISelectorScreen({ navigation }) {
+function KPISelectorScreenFiltered({ navigation }) {
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>Chart catalog</Text>
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
   });
   
 
-export { KPISelectorScreen }
+export { KPISelectorScreenFiltered }
