@@ -10,7 +10,7 @@ import {
   } from "react-native-chart-kit";
   import useLocation  from '../../../hooks/useLocation';
 
-function KPICosts() {
+function KPICosts(color) {
   
   const {getFilteredCosts} = useLocation();
 
@@ -36,7 +36,7 @@ function KPICosts() {
         datasets: [
           {
             data: [20, 45, 28],
-            color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
+            color: (opacity = 1) => `${color}`, // optional
             strokeWidth: 2 // optional
           }
         ],

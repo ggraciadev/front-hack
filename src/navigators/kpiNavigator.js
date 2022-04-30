@@ -15,13 +15,23 @@ function KPINavigator(){
                 options={{
                     title: "KPISelector",
                     gestureEnabled: false,
+                    header: () => null,
                 }}  
                 />
                 <Stack.Screen 
                 name="kpi" 
                 component={KPIScreen}
                 options={{
-                    title: "KPI",
+                    title: "Data charts",
+                    headerTitleStyle: {
+                        marginTop: 25,
+                    },
+                    headerLeftContainerStyle: {
+                        marginTop: 25,
+                    },
+                    headerStyle: {
+                        height: 69,                       
+                    },
                 }}   
                 />
             </Stack.Navigator>

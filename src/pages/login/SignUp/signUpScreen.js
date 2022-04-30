@@ -1,6 +1,7 @@
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
+import CustomButton from "../../../utils/customButton";
 
 function SignUpScreen({ navigation }) {
 
@@ -33,10 +34,19 @@ function SignUpScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
+            <View style={styles.logoContainer}>
+                <Image
+                    source={require('../../../../assets/images/logo_mm.png')}
+                    style={[styles.logo]}
+                />
+            </View>
             <View>
-                <View>
+            <View>
+                    <Text style={styles.title}>
+                        Sign Up
+                    </Text>
                     <Text style={styles.subtitle}>
-                        Enter your data to sign up
+                        Enter your data below
                     </Text>
                 </View>
                 <TextInput
@@ -75,16 +85,17 @@ function SignUpScreen({ navigation }) {
                     </View>
 
                 </View>
-
-                <Button
+                <CustomButton
+                    customStyles={styles.button}
                     onPress={() => createUser()}
-                    title="Sign Up"
+                    text="Sign Up"
                 />
             </View>
-            <View style={styles.button}>
-                <Button
+            <View>
+                <CustomButton
+                    customStyles={styles.button2}
                     onPress={() => navigation.navigate('SignIn')}
-                    title="Go to SignIn"
+                    text="Go back to SignIn"
                 />
             </View>
         </View>
@@ -96,19 +107,44 @@ function SignUpScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 20,
     },
     showPwd: {
         width: 40,
         height: 40,
     },
+    logoContainer: {
+        marginTop: 25, 
+        height: 65,
+        width: '100%',
+    },
+    logo: {
+        width: '100%',
+        height: '100%',
+        alignSelf: 'center',
+    },
+    title: {
+        fontSize: 25,
+        fontWeight: 'bold',
+    },
     subtitle: {
         marginBottom: 10,
     },
     button: {
-        width: '50%',
         alignSelf: 'center',
+        backgroundColor: '#c82420',
+        borderRadius: 10,
+        width: 150,
+        marginBottom: 75
+    },
+    button2: {
+        alignSelf: 'center',
+        backgroundColor: '#000000',
+        borderRadius: 10,
+        width: 150,
+        marginBottom: 20,
     },
     passwordContainer: {
         flexDirection: 'row',

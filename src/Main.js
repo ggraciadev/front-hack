@@ -23,6 +23,9 @@ function Main() {
                     component={SignInScreen}
                     options={{
                         title: 'Sign In',
+                        headerStyle: {
+                            backgroundColor: '#c82420',
+                        },
                         gestureEnabled: false,
                     }}  
                     />
@@ -30,6 +33,9 @@ function Main() {
                     name="SignUp" 
                     component={SignUpScreen}
                     options={{
+                        headerStyle: {
+                            backgroundColor: '#c82420',
+                        },
                         title: 'Sign Up',
                     }}   
                     />
@@ -38,7 +44,7 @@ function Main() {
         ) : ( 
             <NavigationContainer>
                 <Tab.Navigator>
-                    <Tab.Screen name="Home" component={HomeScreen} />
+                    <Tab.Screen name="Home" component={HomeScreen} options={{headerStyle:{backgroundColor: '#c82420'}}} />
                     <Tab.Screen name="KPIs" component={KPINavigator} options={{ header: () => null }}/>
                 </Tab.Navigator>
             </NavigationContainer>

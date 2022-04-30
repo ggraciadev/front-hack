@@ -24,7 +24,7 @@ function KPISelectorScreen({ navigation }) {
                         imageSrc={require('../../../assets/images/purchase.png')}
                         imageHeight={50}
                         imageWidth={50}
-                        onPress={() => {navigation.navigate("kpi", {kpi: "purchases"})}}
+                        onPress={() => {navigation.navigate("kpi", {kpi: "purchases", color: "#2f9fb3"})}}
                     />
                     <CustomButton
                         customStyles={[styles.kpiButton, {backgroundColor:'#f0d5ba'}]}
@@ -32,7 +32,7 @@ function KPISelectorScreen({ navigation }) {
                         imageSrc={require('../../../assets/images/sale.png')}
                         imageHeight={50}
                         imageWidth={50}
-                        onPress={() => {navigation.navigate("kpi", {kpi: "sales"})}}
+                        onPress={() => {navigation.navigate("kpi", {kpi: "sales", color: "#f0d5ba"})}}
                     />
                 </View>
 
@@ -43,31 +43,12 @@ function KPISelectorScreen({ navigation }) {
                         imageSrc={require('../../../assets/images/cost.png')}
                         imageHeight={50}
                         imageWidth={50}
-                        onPress={() => {navigation.navigate("kpi", {kpi: "costs"})}}
+                        onPress={() => {navigation.navigate("kpi", {kpi: "costs", color: "#e3a7c0"})}}
                     />
-                    <CustomButton
-                        customStyles={[styles.kpiButton, {backgroundColor:'#b0abcb'}]}
-                        text="Profit"
-                        imageSrc={require('../../../assets/images/profit.png')}
-                        imageHeight={50}
-                        imageWidth={50}
-                        onPress={() => {}}
-                    />
-                </View>
-
-                <View style={styles.buttonRow}>
                     <CustomButton
                         customStyles={[styles.kpiButton, {backgroundColor:'#c2d5a8'}]}
                         text="Inventory"
                         imageSrc={require('../../../assets/images/inventory.png')}
-                        imageHeight={50}
-                        imageWidth={50}
-                        onPress={() => {}}
-                    />
-                    <CustomButton
-                        customStyles={[styles.kpiButton, {backgroundColor:'#f33f00'}]}
-                        text="Zones"
-                        imageSrc={require('../../../assets/images/zone.png')}
                         imageHeight={50}
                         imageWidth={50}
                         onPress={() => {}}
@@ -81,17 +62,20 @@ function KPISelectorScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-      paddingTop: "6%",
-      paddingHorizontal: "3%",
+        paddingTop: "6%",
+        paddingHorizontal: "3%",
     },
-    kpiContainer: {
-            
+    kpiContainer: {    
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
-      },
+    },
     title: {
-      fontSize: 25,
+        marginTop: 25,
+        fontSize: 40,
+        fontWeight: "bold",
+        alignSelf: "center",
+        marginBottom: '25%',
     },
     buttonRow: {
         flexDirection: 'row',
@@ -99,9 +83,9 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     kpiButton: {
-        marginTop: '20%',
-        height: 100,
-        width: 100,
+        marginTop: '15%',
+        height: 150,
+        width: 150,
     }
   });
   

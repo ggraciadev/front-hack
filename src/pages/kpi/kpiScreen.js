@@ -12,22 +12,28 @@ import {
   } from "react-native-chart-kit";
 import { KPIPurchases, KPISales, KPICosts } from "./components";
 
-function KPIScreen(kpi) {
+function KPIScreen(kpi, color) {
   const kpiType = kpi.route.params.kpi;
   switch (kpiType) {
     case "purchases":
       return(
-        <KPIPurchases />
+        <KPIPurchases 
+          color={color}
+        />
       );
       break;
     case "sales":
       return(
-        <KPISales/>
+        <KPISales
+          color={color}
+        />
       );
         break;
     case "costs":
       return(
-        <KPIPurchases/>
+        <KPIPurchases
+          color={color}  
+        />
       );
   
     default:

@@ -2,9 +2,12 @@ import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, Image } fr
 import React, { useState, useContext } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { AuthContext } from '../../../context/authContext';
+import CustomButton from "../../../utils/customButton";
+
 
 function SignInScreen({ navigation }) {
 
+    
     const { signIn } = useAuth();
 
     const [showPassword, setShowPassword] = useState(true);
@@ -47,7 +50,7 @@ function SignInScreen({ navigation }) {
         <View style={styles.container}>
             <View style={styles.logoContainer}>
                 <Image
-                    source={require('../../../../assets/images/logo.png')}
+                    source={require('../../../../assets/images/logo_mm.png')}
                     style={[styles.logo]}
                 />
             </View>
@@ -97,29 +100,32 @@ function SignInScreen({ navigation }) {
                     </View>
 
                 </View>
-                <Button
+                <CustomButton
+                    customStyles={styles.button}
                     onPress={()=> SignIn()}
-                    title={isLoading ? 'Loading...' : 'Sign In'}
+                    text={isLoading ? 'Loading...' : 'Sign In'}
                     disabled={isLoading}
                 />
             </View>
-            <Text>
-                or one of your social profiles
+            <Text style={{marginTop: 0, fontSize: 16}}>
+                or through one of your corporative accounts below
             </Text>
             <View style={{flexDirection:'row', justifyContent: 'space-around', width: '100%'}}>
-                <Button
-                title='Facebook'
+                <CustomButton
+                    text='Outlook'
+                    customStyles={styles.button}
                 />
-                <Button
-                title='Google'
+                <CustomButton
+                    text='Google'
+                    customStyles={styles.button2}
                 />
             </View>
-            <View style={{flexDirection: 'row'}}>
-                <Text>
+            <View style={{flexDirection: 'row', marginBottom: 20}}>
+                <Text style={{fontSize:20}}>
                     Don't have an account?
                 </Text>
                 <View style={{marginLeft: 5}}>
-                    <Text style={{color: 'blue'}} onPress={() => {navigation.navigate("SignUp")}}>
+                    <Text style={{color: '#c82420', fontSize: 20}} onPress={() => {navigation.navigate("SignUp")}}>
                         Sign Up
                     </Text>
                 </View>
@@ -144,11 +150,13 @@ const styles = StyleSheet.create({
         height: 40,
     },
     logoContainer: {
-        marginBottom: 20,
+        marginTop: 25, 
+        height: 65,
+        width: '100%',
     },
     logo: {
-        width: 225,
-        height: 150,
+        width: '100%',
+        height: '100%',
         alignSelf: 'center',
     },
     title: {
@@ -159,8 +167,16 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     button: {
-        width: '50%',
         alignSelf: 'center',
+        backgroundColor: '#c82420',
+        borderRadius: 10,
+        width: 150,
+    },
+    button2: {
+        alignSelf: 'center',
+        backgroundColor: '#000000',
+        borderRadius: 10,
+        width: 150,
     },
     passwordContainer: {
         flexDirection: 'row',

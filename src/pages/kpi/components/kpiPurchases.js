@@ -63,6 +63,11 @@ function KPIPurchases() {
 
     return (
         <ScrollView style={styles.container}>
+          <View style={styles.chartContainer}>
+            <Text style={styles.pageTitle}>Purchases</Text>
+          </View>
+          <View style = {styles.lineStyle}>
+          </View>
           <View style={styles.kpiContainer}>
            {kpiData[0] &&
            <LineChart
@@ -168,9 +173,19 @@ const styles = StyleSheet.create({
         height: 1200,
         flexDirection: "column",
         alignItems: "center",
-      },
+    },
+    chartContainer: {
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+    },
     title: {
       fontSize: 25,
+    },
+    pageTitle: {
+      fontSize: 30,
+      fontWeight: "bold",
+      alignSelf: "center",
     },
     buttonRow: {
         flexDirection: 'row',
@@ -181,6 +196,12 @@ const styles = StyleSheet.create({
         marginTop: '20%',
         height: 100,
         width: 100,
+    },
+    lineStyle:{
+      borderWidth: 1,
+      borderColor:'black',
+      margin:10,
+      marginBottom: "5%",
     }
   });
   

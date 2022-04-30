@@ -4,7 +4,6 @@ import { CustomMapView } from './homeComponents/customMap';
 function HomeScreen({navigation}) {
     return(
         <View style={styles.map}>
-            <Text>Welcome from the Home Screen</Text>
             <CustomMapView 
                 closeAndGoTo={() => navigation.navigate("kpi", {screen: "kpiSelector"})}
             />

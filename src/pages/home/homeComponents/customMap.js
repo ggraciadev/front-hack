@@ -101,7 +101,8 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, c
             coordinate={{
               latitude: latitude, longitude: longitude
             }}
-          />
+          >
+          </Marker>
 
         <CustomMapPoints
           sites={sites}
