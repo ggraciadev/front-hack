@@ -28,14 +28,8 @@ const AuthProvider = ({ children }) => {
     }
 
     const setAuth = async (auth) => {
-        try {
-            auth.isSignedIn = true;
-            await AsyncStorage.setItem("auth", JSON.stringify(auth));
-            configureAxiosHeaders(auth.token);
-            setAuthState(auth);
-        } catch (error) {
-          Promise.reject(error);  
-        }
+        auth.isSignedIn = true;
+        
     }
 
     const logout = async () => {

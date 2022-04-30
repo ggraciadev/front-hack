@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/authContext';
 import CustomButton from "../../../utils/customButton";
 
 
-function SignInScreen({ navigation }) {
+function SignInScreen({onSignIn, navigation}) {
 
     
     const { signIn } = useAuth();
@@ -39,10 +39,7 @@ function SignInScreen({ navigation }) {
             });
         }else {
             setLoading(true);
-            signIn(user)
-                .then()
-                .catch(err => {setError({error:true, message: 'There is an error with your password or email'});})
-                .finally(()=> setLoading(false));
+            onSignIn();
         }
     }
 

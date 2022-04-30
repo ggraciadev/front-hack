@@ -50,12 +50,24 @@ const useLocation = () => {
     return data;
   };
 
+  const getInventory = async (filter) =>{
+    const response = await axios.get(
+      `${API_HOST}/api/kpis/inventory?filter=${filter}`
+    );
+    const data = response.data;
+    console.log(filter);
+    console.log(data);
+    
+    return data;
+  }
+
   return {
     getSites,
     getSingleSite,
     getFilteredPurchases,
     getFilteredSales,
     getFilteredCosts,
+    getInventory,
   };
 };
 

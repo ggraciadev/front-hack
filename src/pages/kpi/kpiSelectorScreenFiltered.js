@@ -62,7 +62,7 @@ function KPISelectorScreenFiltered({ navigation }) {
                         imageSrc={require('../../../assets/images/inventory.png')}
                         imageHeight={50}
                         imageWidth={50}
-                        onPress={() => {}}
+                        onPress={() => {navigation.navigate("kpi", {kpi: "inventory"})}}
                     />
                     <CustomButton
                         customStyles={[styles.kpiButton, {backgroundColor:'#f33f00'}]}

@@ -51,7 +51,7 @@ function KPISelectorScreen({ navigation }) {
                         imageSrc={require('../../../assets/images/inventory.png')}
                         imageHeight={50}
                         imageWidth={50}
-                        onPress={() => {}}
+                        onPress={() => navigation.navigate("kpi", {kpi: "inventory", color: "#c2d5a8"})}
                     />
                 </View>
             </View>

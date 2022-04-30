@@ -10,7 +10,7 @@ import {
     ContributionGraph,
     StackedBarChart
   } from "react-native-chart-kit";
-import { KPIPurchases, KPISales, KPICosts } from "./components";
+import { KPIPurchases, KPISales, KPICosts, KPIInventory } from "./components";
 
 function KPIScreen(kpi, color) {
   const kpiType = kpi.route.params.kpi;
@@ -31,10 +31,18 @@ function KPIScreen(kpi, color) {
         break;
     case "costs":
       return(
-        <KPIPurchases
+        <KPICosts
           color={color}  
         />
       );
+      break;
+    case "inventory":
+      return(
+        <KPIInventory
+          color={color}
+        />
+      )
+      break;
   
     default:
       break;

@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { KPINavigator , SidebarNavigator} from "./navigators";
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthContext } from './context/authContext';
+import { Image } from 'react-native';
 import { SignInScreen, SignUpScreen, HomeScreen, KPISelectorScreen } from './pages';
 import { StyleSheet, View } from 'react-native';
 
@@ -13,15 +14,16 @@ const Stack =  createStackNavigator();
 function Main() {
     const { auth } = useContext(AuthContext);
 
+    const [isAuthenticated, setAuthenticated] = useState(false); 
+
     return(
-        auth?.isSignedIn ?(
+        !isAuthenticated ?(
             <NavigationContainer>
                 <Stack.Navigator
                     initialRouteName="SignIn"
                 >
                     <Stack.Screen 
                     name="SignIn" 
-                    component={SignInScreen}
                     options={{
                         title: 'Sign In',
                         headerStyle: {
@@ -29,7 +31,9 @@ function Main() {
                         },
                         gestureEnabled: false,
                     }}  
-                    />
+                    >
+                        {() => <SignInScreen onSignIn={() => setAuthenticated(true)} />}
+                    </Stack.Screen>
                     <Stack.Screen 
                     name="SignUp" 
                     component={SignUpScreen}
@@ -43,7 +47,24 @@ function Main() {
                 </Stack.Navigator>
             </NavigationContainer>
         ) : ( 
-            <SidebarNavigator/>
+            <NavigationContainer>
+                <Tab.Navigator>
+                    <Tab.Screen name="Map" component={HomeScreen} 
+                        options={{
+                            headerStyle:{backgroundColor: '#c82420'},
+                            tabBarIcon: () => (<Image source={require("../assets/images/icons/map.png")} style={{width: 25, height: 25}} />)
+                        }}
+                        
+                        />
+                    <Tab.Screen name="KPIs" component={KPINavigator} 
+                        options={{ 
+                            header: () => null,
+                            tabBarIcon: () => (<Image source={require("../assets/images/icons/bar-chart.png")} style={{width: 25, height: 25}} />)
+                        
+                        }}
+                        />
+                </Tab.Navigator>
+            </NavigationContainer>
         )
     )
 }

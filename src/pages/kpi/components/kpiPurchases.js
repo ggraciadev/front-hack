@@ -35,16 +35,6 @@ function KPIPurchases() {
 
   const [kpiData, setKpiData] = useState(
     [
-      {
-        labels: [2020,2021,2022],
-        datasets: [
-          {
-            data: [20, 45, 28],
-            color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-            strokeWidth: 2 // optional
-          }
-        ],
-      }
     ]
   );
 
@@ -52,9 +42,10 @@ function KPIPurchases() {
     let temp=[];
     for(let i = 0; i < filters.length; i++) {
       const data = await getFilteredPurchases(filters[i].kpiType, filters[i].filter);
+      const filtered = data.slice(0,5);
       console.log(data);
-      const labels = data.map(item => item.year || item.date);
-      const values = data.map(item => item.count);
+      const labels = filtered.map(item => item.year || item.date);
+      const values = filtered.map(item => item.count);
       temp.push({labels: labels, datasets: [{data: values}]});
     }
     setKpiData(temp);
@@ -75,6 +66,7 @@ function KPIPurchases() {
                 width={Dimensions.get("window").width - 20} // from react-native
                 height={350}
                 yAxisSuffix=" units"
+                fromZero={true}
                 yAxisInterval={1} // optional, defaults to 1
                 chartConfig={{
                   backgroundColor: "#2f9fb3",
@@ -104,6 +96,7 @@ function KPIPurchases() {
                 data={kpiData[1]}
                 width={Dimensions.get("window").width - 20}
                 height={350}
+                fromZero={true}
                 yAxisLabel="$"
                 chartConfig={{
                   backgroundColor: "#2f9fb3",
@@ -133,6 +126,7 @@ function KPIPurchases() {
                 data={kpiData[2]}
                 width={Dimensions.get("window").width - 20}
                 height={350}
+                fromZero={true}
                 yAxisLabel="$"
                 chartConfig={{
                   backgroundColor: "#2f9fb3",
