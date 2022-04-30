@@ -11,31 +11,50 @@ export default ({isVisible, handleCancel, handleAccept, locationInfo}) => {
             <View style={styles.modal}>
                 <View style={styles.modalTitle}>
                     <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                        {locationInfo[1].direction}
+                    {locationInfo[1].objectType}
+                        
                     </Text>
                 </View>
-                <View style={styles.modalSubtitle}>
-                    <Text style={{fontSize: 15}}>
-                        {locationInfo[1].objectType}
-                    </Text>
-                </View>    
+                <View style={styles.modalInfo}>
+                    <View style={styles.modalSubtitle}>
+                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                            Direction: 
+                        </Text>
+                        <Text>
+                        {locationInfo[1].direction}
+                        </Text>
+                    </View>  
+                    <View style={styles.modalSubtitle}>
+                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                            Available Storage: 
+                        </Text>
+                        <Text>
+                        {locationInfo[1].capacity - locationInfo[1].current} / {locationInfo[1].capacity}
+                        </Text>
+                    </View>     
+                    <View style={styles.modalSubtitle}>
+                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                            Employees:    
+                        </Text>
+                        <Text styles={{marginLeft: 50}}>
+                        {locationInfo[1].numEmployees % 15 + 5}
+                        </Text>
+                    </View> 
+                </View>
 
 
-                <View style={styles.modalButtons}>                    
+                <View style={styles.modalButtons}>   
+                    <Button
+                        customStyles={styles.cancelButton}
+                        onPress={handleCancel}
+                        text="Cancel"
+                    />                 
                     <Button
                         customStyles={styles.acceptButton}
                         onPress={handleAccept}
                         text="Accept"
                     />
-                    {
-                        handleCancel ?
-                        <Button
-                            customStyles={styles.cancelButton}
-                            onPress={handleCancel}
-                            text="Cancel"
-                        />
-                        : null
-                    }
+                        
                 </View>
             </View>
         </Modal>
@@ -60,6 +79,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'blue',
     },
     modalSubtitle:{
+        flexDirection: 'row',
         alignItems: 'center',
         // backgroundColor: 'yellow'
     },

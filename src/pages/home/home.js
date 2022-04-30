@@ -5,7 +5,7 @@ function HomeScreen({navigation}) {
     return(
         <View style={styles.map}>
             <CustomMapView 
-                closeAndGoTo={() => navigation.navigate("kpi", {screen: "kpiSelector"})}
+                closeAndGoTo={() => navigation.navigate("KPISelector", {screen: "kpiSelector"})}
             />
         </View>
     )

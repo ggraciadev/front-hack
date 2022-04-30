@@ -18,19 +18,35 @@ export default ({sites, OpenStationInfo,searchedPoint}) => {
     }
 
     const GetColorStation = (station) => { 
-        let percent = station[1].current / station[1].capacity;
-        if(percent >= 0.9) {
-            return stationColors[3];
+        if(station !== null) {
+            let percent = station[1].current / station[1].capacity;
+            let isWarehouse = station[1].objectType == "warehouse";
+            if(percent >= 0.9) {
+                if(isWarehouse) {
+                    return (require( '../../../../assets/images/icons/wareHouseRed.png'));
+                }
+                else {
+                    return (require( '../../../../assets/images/icons/shopRed.png'));
+                }
+            }
+            else if(percent >= 0.7) {
+                if(isWarehouse) {
+                    return (require( '../../../../assets/images/icons/wareHouseYellow.png'));
+                }
+                else {
+                    return (require( '../../../../assets/images/icons/shopYellow.png'));
+                }
+            }
+            else {
+                if(isWarehouse) {
+                    return (require( '../../../../assets/images/icons/wareHouseGreen.png'));
+                }
+                else {
+                    return (require( '../../../../assets/images/icons/shopGreen.png'));
+                }
+            }
         }
-        else if(percent >= 0.65) {
-            return stationColors[2];
-        }
-        else {
-            stationColors[0];
-        }
-        return stationColors[4];
-    }
-
+    };
 
     const markers=[]
 
@@ -43,7 +59,7 @@ export default ({sites, OpenStationInfo,searchedPoint}) => {
             key={index}
             ref={(ref) => markers[site[1].id] = ref}
             onPress={()=>OpenStationInfo(site)}
-                pinColor={GetColorStation(site)}
+            image={GetColorStation(site)}
                 coordinate={{
                     latitude: site[1].coordinates.lat,
                     longitude: site[1].coordinates.lng
