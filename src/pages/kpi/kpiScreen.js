@@ -10,7 +10,7 @@ import {
     ContributionGraph,
     StackedBarChart
   } from "react-native-chart-kit";
-import { KPIPurchases, KPISales } from "./components";
+import { KPIPurchases, KPISales, KPICosts } from "./components";
 
 function KPIScreen(kpi) {
   const kpiType = kpi.route.params.kpi;
@@ -25,6 +25,10 @@ function KPIScreen(kpi) {
         <KPISales/>
       );
         break;
+    case "costs":
+      return(
+        <KPIPurchases/>
+      );
   
     default:
       break;

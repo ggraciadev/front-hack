@@ -14,14 +14,31 @@ const useLocation = () => {
     return data;
   };
 
-  const getFiltered = (kpiType, filter) => {
-    return async () => {
-      const response = await axios.get(
-        `${API_HOST}/api/kpis/${kpiType}?filter=${filter}`
-      );
-      const data = response.data;
-      return data;
-    };
+  const getFilteredPurchases = async (kpiType, filter) => {
+    
+    const response = await axios.get(
+      `${API_HOST}/api/kpis/purchases?filter=${filter}&kpiType=${kpiType}`
+    );
+    const data = response.data;
+    return data;
+  };
+
+  const getFilteredSales = async (kpiType, filter) => {
+    
+    const response = await axios.get(
+      `${API_HOST}/api/kpis/sales?filter=${filter}&kpiType=${kpiType}`
+    );
+    const data = response.data;
+    return data;
+  };
+
+  const getFilteredCosts = async (kpiType, filter) => {
+    
+    const response = await axios.get(
+      `${API_HOST}/api/kpis/costs?filter=${filter}&kpiType=${kpiType}`
+    );
+    const data = response.data;
+    return data;
   };
 
 
@@ -36,7 +53,9 @@ const useLocation = () => {
   return {
     getSites,
     getSingleSite,
-    getFiltered,
+    getFilteredPurchases,
+    getFilteredSales,
+    getFilteredCosts,
   };
 };
 

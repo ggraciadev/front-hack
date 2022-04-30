@@ -1,10 +1,13 @@
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { CustomMapView } from './homeComponents/customMap';
-function HomeScreen() {
+
+function HomeScreen({navigation}) {
     return(
         <View style={styles.map}>
             <Text>Welcome from the Home Screen</Text>
-            <CustomMapView/>
+            <CustomMapView 
+                closeAndGoTo={() => navigation.navigate("kpi", {screen: "kpiSelector"})}
+            />
         </View>
     )
 }

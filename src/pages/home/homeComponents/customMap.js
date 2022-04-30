@@ -5,9 +5,9 @@ import * as Location from 'expo-location';
 import CustomButton from '../../../utils/customButton';
 import useLocation from '../../../hooks/useLocation';
 import CustomMapPoints from './customMapPoints';
-import CustomModal from '../../../utils/customModal';
+import LocationModal   from './locationModal';
 
-const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, routeActivate, ActivateRoute, mapFilter, onChangeFilter, ChangeRoutingInfo}) => {
+const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, closeAndGoTo}) => {
 
   const {getSites} = useLocation();
 
@@ -29,6 +29,8 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, r
   var centerPositionReload;
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [currentSelected, setCurrentSelected] = useState(null);
 
   const [sites, setSites] = useState([]);
 
@@ -71,6 +73,12 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, r
     , 1500)
   }
 
+  const onSelectLocation = (loc) => {
+    console.log(loc);
+    setCurrentSelected(loc);
+    setModalVisible(true);
+  }
+
   
 
   const {latitude,longitude} = location;
@@ -97,14 +105,16 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, r
 
         <CustomMapPoints
           sites={sites}
-          OpenStationInfo={() => setModalVisible(true)}
+          OpenStationInfo={onSelectLocation}
         />  
 
         </MapView>
         
-        <CustomModal
+        <LocationModal
           isVisible={modalVisible}
           handleAccept = {() => closeAndGoTo()}
+          handleCancel={() => setModalVisible(false)}
+          locationInfo={currentSelected}
         />
             
         <CustomButton

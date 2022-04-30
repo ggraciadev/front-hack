@@ -10,9 +10,9 @@ import {
   } from "react-native-chart-kit";
   import useLocation  from '../../../hooks/useLocation';
 
-function KPISales() {
+function KPICosts() {
   
-  const {getFilteredSales} = useLocation();
+  const {getFilteredCosts} = useLocation();
 
   const filters = [
     {
@@ -47,7 +47,7 @@ function KPISales() {
   useEffect(async () => {
     let temp=[];
     for(let i = 0; i < filters.length; i++) {
-      const data = await getFilteredSales(filters[i].kpiType, filters[i].filter);
+      const data = await getFilteredCosts(filters[i].kpiType, filters[i].filter);
       console.log(data);
       const labels = data.map(item => item.year || item.date);
       const values = data.map(item => item.count);
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
   });
   
 
-export { KPISales }
+export { KPICosts }

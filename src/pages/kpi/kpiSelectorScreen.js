@@ -43,7 +43,7 @@ function KPISelectorScreen({ navigation }) {
                         imageSrc={require('../../../assets/images/cost.png')}
                         imageHeight={50}
                         imageWidth={50}
-                        onPress={() => {}}
+                        onPress={() => {navigation.navigate("kpi", {kpi: "costs"})}}
                     />
                     <CustomButton
                         customStyles={[styles.kpiButton, {backgroundColor:'#b0abcb'}]}

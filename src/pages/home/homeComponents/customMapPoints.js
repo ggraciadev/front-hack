@@ -19,10 +19,10 @@ export default ({sites, OpenStationInfo,searchedPoint}) => {
 
     const GetColorStation = (station) => { 
         let percent = station[1].current / station[1].capacity;
-        if(percent >= 0.75) {
+        if(percent >= 0.9) {
             return stationColors[3];
         }
-        else if(percent >= 0.4) {
+        else if(percent >= 0.65) {
             return stationColors[2];
         }
         else {
