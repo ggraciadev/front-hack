@@ -13,7 +13,7 @@ function Main() {
     const { auth } = useContext(AuthContext);
 
     return(
-        auth?.isSignedIn ?(
+        !auth?.isSignedIn ?(
             <NavigationContainer>
                 <Stack.Navigator
                     initialRouteName="SignIn"
