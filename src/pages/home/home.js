@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import MapView from 'react-native-maps';
+import { CustomMapView } from './homeComponents/customMap';
 function HomeScreen() {
     return(
-        <View>
+        <View style={styles.map}>
             <Text>Welcome from the Home Screen</Text>
-            <MapView style={styles.map}/>
+            <CustomMapView/>
         </View>
     )
 }

@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthContext } from './context/authContext';
-import { SignInScreen, SignUpScreen, HomeScreen, KPIScreen } from './pages/';
+import { SignInScreen, SignUpScreen, HomeScreen, KPISelectorScreen } from './pages/';
 
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
@@ -12,7 +12,7 @@ function Main() {
     const { auth } = useContext(AuthContext);
 
     return(
-        !auth?.isSignedIn ?(
+        auth?.isSignedIn ?(
             <NavigationContainer>
                 <Stack.Navigator
                     initialRouteName="SignIn"
@@ -38,7 +38,7 @@ function Main() {
             <NavigationContainer>
                 <Tab.Navigator>
                     <Tab.Screen name="Home" component={HomeScreen} />
-                    <Tab.Screen name="KPI" component={KPIScreen} />
+                    <Tab.Screen name="KPI" component={KPISelectorScreen} />
                 </Tab.Navigator>
             </NavigationContainer>
         )
