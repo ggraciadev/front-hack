@@ -39,7 +39,7 @@ function KPISelectorScreen({ navigation }) {
                 <View style={styles.buttonRow}>
                     <CustomButton
                         customStyles={[styles.kpiButton, {backgroundColor:'#e3a7c0'}]}
-                        text="Costs"
+                        text="Finances"
                         imageSrc={require('../../../assets/images/cost.png')}
                         imageHeight={50}
                         imageWidth={50}

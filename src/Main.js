@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { KPINavigator } from "./navigators";
+import { KPINavigator , SidebarNavigator} from "./navigators";
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthContext } from './context/authContext';
 import { SignInScreen, SignUpScreen, HomeScreen, KPISelectorScreen } from './pages';
+import { Image } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
@@ -43,10 +44,7 @@ function Main() {
             </NavigationContainer>
         ) : ( 
             <NavigationContainer>
-                <Tab.Navigator>
-                    <Tab.Screen name="Home" component={HomeScreen} options={{headerStyle:{backgroundColor: '#c82420'}}} />
-                    <Tab.Screen name="KPIs" component={KPINavigator} options={{ header: () => null }}/>
-                </Tab.Navigator>
+                <SidebarNavigator/>
             </NavigationContainer>
         )
     )
