@@ -15,7 +15,7 @@ function SidebarNavigator() {
 
   return(
       <NavigationContainer>
-        <Drawer.Navigator drawerContent={(props) => {<CustomDrawer {...props} />}}>
+        <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
           <Drawer.Screen
             name="Home"
             component={MainNavigator}

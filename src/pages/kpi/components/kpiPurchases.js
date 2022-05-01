@@ -39,7 +39,6 @@ function KPIPurchases() {
     for(let i = 0; i < filters.length; i++) {
       const data = await getFilteredPurchases(filters[i].kpiType, filters[i].filter);
       const filtered = data.slice(0,5);
-      console.log(data);
       const labels = filtered.map(item => item.year || item.date);
       const values = filtered.map(item => item.count);
       temp.push({labels: labels, datasets: [{data: values}]});

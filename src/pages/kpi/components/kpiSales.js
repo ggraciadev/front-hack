@@ -35,7 +35,6 @@ function KPISales() {
     for(let i = 0; i < filters.length; i++) {
       const data = await getFilteredSales(filters[i].kpiType, filters[i].filter);
       const filtered = data.slice(0,5);
-      console.log(data);
       const labels = filtered?.map(item => item.year || item.date || item.brandName || item.motorType);
       const values = filtered?.map(item => item.count);
       temp.push({labels: labels, datasets: [{data: values}]});

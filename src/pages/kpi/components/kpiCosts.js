@@ -59,10 +59,8 @@ function KPICosts(color) {
       const values = filtered.map(item => item.count);
       temp.push({labels: labels, datasets: [{data: values}]});
     }
-    console.log(filters[2].filter)
     const data = await getProfits(filters[2].filter);
         const filtered = data.slice(0,5);
-      console.log(data);
       const labels = filtered.map(item => item.date);
       const values = filtered.map(item => item.profit);
       temp.push({labels: labels, datasets: [{data: values}]});

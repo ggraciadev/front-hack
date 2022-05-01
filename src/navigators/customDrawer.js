@@ -33,9 +33,11 @@ function CustomDrawer(props) {
           <Text
             style={{
               color: '#fff',
-              fontSize: 18,
+              fontSize: 22,
               marginBottom: 5,
+              marginLeft: 5,
             }}>
+              AwaKT
           </Text>
         </ImageBackground>
         <View style={{flex: 1, backgroundColor: '#fff', paddingTop: 10}}>
