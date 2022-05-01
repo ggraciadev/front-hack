@@ -12,7 +12,7 @@ import {
 } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-function CustomDrawer(props) {
+function CustomDrawer({props}) {
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView
@@ -46,7 +46,7 @@ function CustomDrawer(props) {
                 fontSize: 15,
                 marginLeft: 5,
               }}
-              onPress={() => navigator.navigate("SignIn")}>
+              onPress={() => {}}>
               Log out
             </Text>
           </View>

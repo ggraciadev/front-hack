@@ -3,9 +3,10 @@ import React, { useState, useContext } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { AuthContext } from '../../../context/authContext';
 import CustomButton from "../../../utils/customButton";
+import { RotateInUpLeft } from 'react-native-reanimated';
 
 
-function SignInScreen({onSignIn, navigation}) {
+function SignInScreen({route , navigation}) {
 
     
     const { signIn } = useAuth();
@@ -39,7 +40,7 @@ function SignInScreen({onSignIn, navigation}) {
             });
         }else {
             setLoading(true);
-            onSignIn();
+            route.params.setAuthenticated(true);
         }
     }
 

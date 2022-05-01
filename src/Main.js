@@ -31,8 +31,9 @@ function Main() {
                         },
                         gestureEnabled: false,
                     }}  
+                    component={SignInScreen} 
+                    initialParams={{setAuthenticated}}
                     >
-                        {() => <SignInScreen onSignIn={() => setAuthenticated(true)} />}
                     </Stack.Screen>
                     <Stack.Screen 
                     name="SignUp" 
