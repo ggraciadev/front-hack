@@ -40,7 +40,7 @@ function SignInScreen({route , navigation}) {
             });
         }else {
             setLoading(true);
-            route.params.setAuthenticated(true);
+            signIn();
         }
     }
 

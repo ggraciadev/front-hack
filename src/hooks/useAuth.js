@@ -5,25 +5,14 @@ import {API_HOST} from '@env';
 import { AuthContext } from '../context/authContext';
 const useAuth = () => {
 
-    const { setAuth, logout } = useContext(AuthContext);
+    const { setAuth, logout, login } = useContext(AuthContext);
 
     const signIn = async (user) => {
-        const { email, password } = user;
-        const response = await axios.post(`${API_HOST}/api/auth/login`, {
-            email,
-            password,
-        })
-        const data = response.data;
-        setAuth(data);   
+        login();
     }
 
     const signUp = async (user) => {
-        const { name, email, password } = user;
-        await axios.post(`${API_HOST}/api/auth/register`, {
-            name, 
-            email,
-            password
-        })
+        login();
     }
 
     const signOut = async () => {

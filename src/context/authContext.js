@@ -10,6 +10,11 @@ const AuthProvider = ({ children }) => {
         isSignedIn: false
     }
 
+    const loggedState = {
+        token: null,
+        isSignedIn: true
+    }
+
     const [auth, setAuthState] = useState(initialState);
 
     const getAuthState = async () => {
@@ -32,14 +37,12 @@ const AuthProvider = ({ children }) => {
         
     }
 
-    const logout = async () => {
-        try {
-           setAuthState(initialState);
-           await AsyncStorage.removeItem("auth");
-           configureAxiosHeaders(null);
-        } catch (error) {
-           Promise.reject(error); 
-        }
+    const login = () => {
+        setAuthState(loggedState);
+    }
+
+    const logout = () => {
+        setAuthState(initialState); 
     }
 
     const configureAxiosHeaders = (token) => {
@@ -51,7 +54,7 @@ const AuthProvider = ({ children }) => {
     },[])
 
     return (
-        <AuthContext.Provider value={{ auth, setAuth, logout }}>
+        <AuthContext.Provider value={{ auth, setAuth, logout, login }}>
             {children}
         </AuthContext.Provider>
     )
