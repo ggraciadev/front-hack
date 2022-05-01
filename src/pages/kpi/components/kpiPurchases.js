@@ -24,10 +24,6 @@ function KPIPurchases() {
       filter: "month&year=2022"
     },
     {
-      kpiType: "type",
-      filter: "month&year=2022"
-    },
-    {
       kpiType: "most_bought",
       filter: "month&year=2022"
     }
@@ -60,12 +56,17 @@ function KPIPurchases() {
           <View style = {styles.lineStyle}>
           </View>
           <View style={styles.kpiContainer}>
+            {
+              kpiData[0] &&
+              <Text>Purchases per Month</Text>
+            }
            {kpiData[0] &&
+           ( 
            <LineChart
                 data={kpiData[0] ?? null}
                 width={Dimensions.get("window").width - 20} // from react-native
                 height={350}
-                yAxisSuffix=" units"
+                yAxisSuffix=""
                 fromZero={true}
                 yAxisInterval={1} // optional, defaults to 1
                 chartConfig={{
@@ -90,14 +91,19 @@ function KPIPurchases() {
                 borderRadius: 16
                 }}
               />   
+           )
             }    
+            {
+              kpiData[1] &&
+              <Text>Purchases per Brand</Text>
+            }
               {kpiData[1] &&
               <BarChart
                 data={kpiData[1]}
                 width={Dimensions.get("window").width - 20}
                 height={350}
                 fromZero={true}
-                yAxisLabel="$"
+                yAxisLabel=""
                 chartConfig={{
                   backgroundColor: "#2f9fb3",
                   backgroundGradientFrom: "#2e8eb5",
@@ -164,7 +170,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: "3%",
     },
     kpiContainer: {
-        height: 1200,
+        height: 800,
         flexDirection: "column",
         alignItems: "center",
     },

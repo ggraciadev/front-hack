@@ -64,6 +64,10 @@ function KPIInventory() {
           </View>
           <View style = {styles.lineStyle}></View>
       <View style={styles.kpiContainer}>
+      {
+              kpiData[0] &&
+              <Text>Occupied space per Warehouse</Text>
+            }
        {kpiData[0] &&
        
        <LineChart
@@ -81,6 +85,10 @@ function KPIInventory() {
             }}
           />   
         }    
+        {
+              kpiData[1] &&
+              <Text>Occupied space per Shop</Text>
+            }
           {kpiData[1] &&
           <LineChart
           data={kpiData[1] ?? null}
@@ -110,9 +118,8 @@ const styles = StyleSheet.create({
       paddingHorizontal: "3%",
     },
     kpiContainer: {
-            
+        height: 800,
         flexDirection: "column",
-        justifyContent: "space-between",
         alignItems: "center",
       },
       pageTitle: {
