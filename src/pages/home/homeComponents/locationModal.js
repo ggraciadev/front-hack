@@ -49,30 +49,49 @@ export default ({isVisible, handleCancel, handleAccept, locationInfo}) => {
                     </Text>
                 </View>
                 <View style={styles.modalInfo}>
+                    <View style={styles.infoSlot}>
+                        <Image 
+                        style={styles.iconInfo}
+                            source={require( '../../../../assets/images/icons/location.png')}
+                        />
                     <View style={styles.modalSubtitle}>
-                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                        <Text style={{fontSize: 15, fontWeight:'bold', marginLeft: 15}}>
                             Direction: 
                         </Text>
                         <Text>
                         {locationInfo[1].direction}
                         </Text>
                     </View>  
+                    </View>
+                    <View style={styles.infoSlot}>
+                    <Image 
+                        style={styles.iconInfo}
+                            source={require( '../../../../assets/images/icons/open-box.png')}
+                        />
                     <View style={styles.modalSubtitle}>
-                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                        
+                        <Text style={{fontSize: 15, fontWeight:'bold', marginLeft: 15}}>
                             Available Storage: 
                         </Text>
                         <Text>
                         {locationInfo[1].capacity - locationInfo[1].current} / {locationInfo[1].capacity}
                         </Text>
-                    </View>     
+                    </View>   
+                    </View>  
+                    <View style={styles.infoSlot}>
                     <View style={styles.modalSubtitle}>
-                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                    <Image 
+                        style={styles.iconInfo}
+                            source={require( '../../../../assets/images/icons/user.png')}
+                        />
+                        <Text style={{fontSize: 15, fontWeight:'bold', marginLeft: 15}}>
                             Employees:    
                         </Text>
                         <Text>
                         {locationInfo[1].numEmployees % 15 + 5}
                         </Text>
                     </View> 
+                    </View>
                 </View>
 
 
@@ -137,4 +156,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
     },
+    infoSlot: {
+        flexDirection: 'row',
+        height: 30,
+        marginBottom: 10,
+    },
+    iconInfo: {
+        height: 30,
+        width: 30,
+
+    }
 })
