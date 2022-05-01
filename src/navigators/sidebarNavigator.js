@@ -19,7 +19,8 @@ function SidebarNavigator() {
             name="Home"
             component={MainNavigator}
             options={{
-              title: 'Home',
+              title: 'Map',
+              
               drawerIcon: ({ color }) => (
                 <Ionicons name="home-outline" size={22} color={color} />
               ),
@@ -39,5 +40,7 @@ function SidebarNavigator() {
       </NavigationContainer>
   )
 }
+
+
 
 export { SidebarNavigator };

@@ -47,24 +47,7 @@ function Main() {
                 </Stack.Navigator>
             </NavigationContainer>
         ) : ( 
-            <NavigationContainer>
-                <Tab.Navigator>
-                    <Tab.Screen name="Map" component={HomeScreen} 
-                        options={{
-                            headerStyle:{backgroundColor: '#c82420'},
-                            tabBarIcon: () => (<Image source={require("../assets/images/icons/map.png")} style={{width: 25, height: 25}} />)
-                        }}
-                        
-                        />
-                    <Tab.Screen name="KPIs" component={KPINavigator} 
-                        options={{ 
-                            header: () => null,
-                            tabBarIcon: () => (<Image source={require("../assets/images/icons/bar-chart.png")} style={{width: 25, height: 25}} />)
-                        
-                        }}
-                        />
-                </Tab.Navigator>
-            </NavigationContainer>
+            <SidebarNavigator />
         )
     )
 }
