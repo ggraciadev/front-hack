@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: "bold",
         alignSelf: "center",
-        marginBottom: '25%',
+        marginBottom: '5%',
     },
     buttonRow: {
         flexDirection: 'row',
