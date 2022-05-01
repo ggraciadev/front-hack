@@ -49,14 +49,21 @@ const useLocation = () => {
     const data = response.data;
     return data;
   };
+  
+  const getProfits = async (filter) => {
+    const response = await axios.get(
+      `${API_HOST}/api/kpis/profits?filter=${filter}`
+    );
+    const data = response.data;
+    return data;
+    
+  };
 
   const getInventory = async (filter) =>{
     const response = await axios.get(
       `${API_HOST}/api/kpis/inventory?filter=${filter}`
     );
     const data = response.data;
-    console.log(filter);
-    console.log(data);
     
     return data;
   }
@@ -68,6 +75,7 @@ const useLocation = () => {
     getFilteredSales,
     getFilteredCosts,
     getInventory,
+    getProfits,
   };
 };
 

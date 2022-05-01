@@ -41,9 +41,9 @@ function KPIInventory() {
   }, []);
 
   var chartConfig = {
-    backgroundColor: "#f0d5ba",
-    backgroundGradientFrom: "#a18162",
-    backgroundGradientTo: "#f0d5ba",
+    backgroundColor: "#c2d5a8",
+    backgroundGradientFrom: "#c2d5a8",
+    backgroundGradientTo: "#e2e8b3",
     decimalPlaces: 0, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,

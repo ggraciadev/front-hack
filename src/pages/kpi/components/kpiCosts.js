@@ -12,16 +12,19 @@ import {
 
 function KPICosts(color) {
   
-  const {getFilteredCosts} = useLocation();
+  const {getFilteredCosts, getProfits} = useLocation();
 
   const filters = [
     {
       kpiType: "buy",
-      filter: "month&year=2022"
+      filter: "month&year=2021"
     },
     {
       kpiType: "refactor",
-      filter: "month&year=2022"
+      filter: "month&year=2021"
+    },
+    {
+        filter: "month&year=2019"
     },
   ]
 
@@ -49,14 +52,21 @@ function KPICosts(color) {
 
   useEffect(async () => {
     let temp=[];
-    for(let i = 0; i < filters.length; i++) {
+    for(let i = 0; i < 2; i++) {
       const data = await getFilteredCosts(filters[i].kpiType, filters[i].filter);
         const filtered = data.slice(0,10);
-      console.log(data);
       const labels = filtered.map(item => item.year || item.date);
       const values = filtered.map(item => item.count);
       temp.push({labels: labels, datasets: [{data: values}]});
     }
+    console.log(filters[2].filter)
+    const data = await getProfits(filters[2].filter);
+        const filtered = data.slice(0,10);
+      console.log(data);
+      const labels = filtered.map(item => item.date);
+      const values = filtered.map(item => item.profit);
+      temp.push({labels: labels, datasets: [{data: values}]});
+    
     setKpiData(temp);
   }, []);
 
@@ -110,6 +120,7 @@ function KPICosts(color) {
             verticalLabelRotation={30}
           />
             }
+            
           </View>
         </ScrollView>
   );
