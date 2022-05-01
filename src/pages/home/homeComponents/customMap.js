@@ -74,7 +74,6 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, c
   }
 
   const onSelectLocation = (loc) => {
-    console.log(loc);
     setCurrentSelected(loc);
     setModalVisible(true);
   }
@@ -97,12 +96,6 @@ const CustomMapView = ({color, vehicleType, CloseStationInfo, OpenStationInfo, c
           initialRegion={initialRegion}
         >
 
-          <Marker 
-            coordinate={{
-              latitude: latitude, longitude: longitude
-            }}
-          >
-          </Marker>
 
         <CustomMapPoints
           sites={sites}

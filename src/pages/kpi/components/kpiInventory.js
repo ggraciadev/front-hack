@@ -10,18 +10,16 @@ import {
   } from "react-native-chart-kit";
   import useLocation  from '../../../hooks/useLocation';
 
-function KPISales() {
+function KPIInventory() {
   
-  const {getFilteredSales} = useLocation();
+  const {getInventory} = useLocation();
 
   const filters = [
     {
-      kpiType: "sales",
-      filter: "month&year=2019"
+      filter: "warehouse"
     },
     {
-      kpiType: "most_sold",
-      filter: "month&year=2019"
+      filter: "shop"
     }
   ]
 
@@ -33,20 +31,19 @@ function KPISales() {
   useEffect(async () => {
     let temp=[];
     for(let i = 0; i < filters.length; i++) {
-      const data = await getFilteredSales(filters[i].kpiType, filters[i].filter);
-      const filtered = data.slice(0,5);
-      console.log(data);
-      const labels = filtered?.map(item => item.year || item.date || item.brandName || item.motorType);
-      const values = filtered?.map(item => item.count);
+      const data = await getInventory(filters[i].filter);
+      const filtered = data.slice(0,10);
+      const labels = filtered?.map((item,index) => index);
+      const values = filtered?.map(item => item.percentage);
       temp.push({labels: labels, datasets: [{data: values}]});
     }
     setKpiData(temp);
   }, []);
 
   var chartConfig = {
-    backgroundColor: "#f0d5ba",
-    backgroundGradientFrom: "#a18162",
-    backgroundGradientTo: "#f0d5ba",
+    backgroundColor: "#c2d5a8",
+    backgroundGradientFrom: "#c2d5a8",
+    backgroundGradientTo: "#e2e8b3",
     decimalPlaces: 0, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -63,20 +60,21 @@ function KPISales() {
     return (
       <ScrollView style={styles.container}>
          <View style={styles.chartContainer}>
-            <Text style={styles.pageTitle}>Sales</Text>
+            <Text style={styles.pageTitle}>Inventory</Text>
           </View>
           <View style = {styles.lineStyle}></View>
       <View style={styles.kpiContainer}>
       {
               kpiData[0] &&
-              <Text>Sales per month</Text>
+              <Text>Occupied space per Warehouse</Text>
             }
        {kpiData[0] &&
+       
        <LineChart
             data={kpiData[0] ?? null}
             width={Dimensions.get("window").width - 20} // from react-native
             height={350}
-            yAxisSuffix=""
+            yAxisSuffix=" %"
             fromZero={true}
             yAxisInterval={1} // optional, defaults to 1
             chartConfig={chartConfig}
@@ -89,23 +87,25 @@ function KPISales() {
         }    
         {
               kpiData[1] &&
-              <Text>Sales per Brand</Text>
+              <Text>Occupied space per Shop</Text>
             }
           {kpiData[1] &&
-          <BarChart
-            data={kpiData[1]}
-            width={Dimensions.get("window").width - 20}
-            height={350}
-            yAxisLabel=""
-            fromZero={true}
-            chartConfig={chartConfig}
-            style={{
-              marginVertical: 8,
-              borderRadius: 16
-              }}
-            verticalLabelRotation={30}
-          />
+          <LineChart
+          data={kpiData[1] ?? null}
+          width={Dimensions.get("window").width - 20} // from react-native
+          height={350}
+          yAxisSuffix=" %"
+          fromZero={true}
+          yAxisInterval={1} // optional, defaults to 1
+          chartConfig={chartConfig}
+          bezier
+          style={{
+          marginVertical: 8,
+          borderRadius: 16
+          }}
+        />   
             }
+            
           </View>
         </ScrollView>
   );
@@ -149,4 +149,4 @@ const styles = StyleSheet.create({
   });
   
 
-export { KPISales }
+export { KPIInventory }

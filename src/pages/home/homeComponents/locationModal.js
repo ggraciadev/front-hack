@@ -1,45 +1,97 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Pressable, Image } from 'react-native';
 import Modal from 'react-native-modal';
 import Button from '../../../utils/customButton';
 
 export default ({isVisible, handleCancel, handleAccept, locationInfo}) => {
     
+    const GetIcon = (info) => {
+        let percent = info.current / info.capacity;
+            let isWarehouse = info.objectType == "warehouse";
+            if(percent >= 0.9) {
+                if(isWarehouse) {
+                    return (require( '../../../../assets/images/icons/wareHouseRed.png'));
+                }
+                else {
+                    return (require( '../../../../assets/images/icons/shopRed.png'));
+                }
+            }
+            else if(percent >= 0.7) {
+                if(isWarehouse) {
+                    return (require( '../../../../assets/images/icons/wareHouseYellow.png'));
+                }
+                else {
+                    return (require( '../../../../assets/images/icons/shopYellow.png'));
+                }
+            }
+            else {
+                if(isWarehouse) {
+                    return (require( '../../../../assets/images/icons/wareHouseGreen.png'));
+                }
+                else {
+                    return (require( '../../../../assets/images/icons/shopGreen.png'));
+                }
+            }
+    };
+
     return(
         locationInfo ?
         <Modal isVisible={isVisible}>
             <View style={styles.modal}>
                 <View style={styles.modalTitle}>
+                    <Image 
+                        source={GetIcon(locationInfo[1])}
+                        style={[styles.icon]}
+                    />
                     <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                    {locationInfo[1].objectType}
+                    {locationInfo[1].objectType.toUpperCase()}
                         
                     </Text>
                 </View>
                 <View style={styles.modalInfo}>
+                    <View style={styles.infoSlot}>
+                        <Image 
+                        style={styles.iconInfo}
+                            source={require( '../../../../assets/images/icons/location.png')}
+                        />
                     <View style={styles.modalSubtitle}>
-                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                        <Text style={{fontSize: 15, fontWeight:'bold', marginLeft: 15}}>
                             Direction: 
                         </Text>
                         <Text>
                         {locationInfo[1].direction}
                         </Text>
                     </View>  
+                    </View>
+                    <View style={styles.infoSlot}>
+                    <Image 
+                        style={styles.iconInfo}
+                            source={require( '../../../../assets/images/icons/open-box.png')}
+                        />
                     <View style={styles.modalSubtitle}>
-                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                        
+                        <Text style={{fontSize: 15, fontWeight:'bold', marginLeft: 15}}>
                             Available Storage: 
                         </Text>
                         <Text>
                         {locationInfo[1].capacity - locationInfo[1].current} / {locationInfo[1].capacity}
                         </Text>
-                    </View>     
+                    </View>   
+                    </View>  
+                    <View style={styles.infoSlot}>
                     <View style={styles.modalSubtitle}>
-                        <Text style={{fontSize: 15, fontWeight:'bold'}}>
+                    <Image 
+                        style={styles.iconInfo}
+                            source={require( '../../../../assets/images/icons/user.png')}
+                        />
+                        <Text style={{fontSize: 15, fontWeight:'bold', marginLeft: 15}}>
                             Employees:    
                         </Text>
-                        <Text styles={{marginLeft: 50}}>
+                        <Text>
                         {locationInfo[1].numEmployees % 15 + 5}
                         </Text>
                     </View> 
+                    </View>
                 </View>
 
 
@@ -47,13 +99,8 @@ export default ({isVisible, handleCancel, handleAccept, locationInfo}) => {
                     <Button
                         customStyles={styles.cancelButton}
                         onPress={handleCancel}
-                        text="Cancel"
-                    />                 
-                    <Button
-                        customStyles={styles.acceptButton}
-                        onPress={handleAccept}
-                        text="Accept"
-                    />
+                        text="Close"
+                    />      
                         
                 </View>
             </View>
@@ -72,6 +119,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 20,
         // backgroundColor: 'red'
+    },
+    icon: {
+        width: 40,
+        height: 40,
     },
     modalTitle:{
         alignItems: 'center',
@@ -105,4 +156,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
     },
+    infoSlot: {
+        flexDirection: 'row',
+        height: 30,
+        marginBottom: 10,
+    },
+    iconInfo: {
+        height: 30,
+        width: 30,
+
+    }
 })
