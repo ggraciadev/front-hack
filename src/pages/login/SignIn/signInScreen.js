@@ -39,7 +39,7 @@ function SignInScreen({onSignIn, navigation}) {
             });
         }else {
             setLoading(true);
-            onSignIn();
+            signIn();
         }
     }
 

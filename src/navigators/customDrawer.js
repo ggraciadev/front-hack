@@ -11,8 +11,13 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import useAuth from '../hooks/useAuth';
 
 function CustomDrawer(props) {
+
+  const { auth, signOut } = useAuth();
+  
+
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView
@@ -46,7 +51,7 @@ function CustomDrawer(props) {
                 fontSize: 15,
                 marginLeft: 5,
               }}
-              onPress={() => navigator.navigate("SignIn")}>
+              onPress={() => signOut()}>
               Log out
             </Text>
           </View>

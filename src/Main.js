@@ -17,13 +17,15 @@ function Main() {
     const [isAuthenticated, setAuthenticated] = useState(false); 
 
     return(
-        !isAuthenticated ?(
+
+        !auth?.isSignedIn ?(
             <NavigationContainer>
                 <Stack.Navigator
                     initialRouteName="SignIn"
                 >
                     <Stack.Screen 
                     name="SignIn" 
+                    component={SignInScreen}
                     options={{
                         title: 'Sign In',
                         headerStyle: {
@@ -31,9 +33,7 @@ function Main() {
                         },
                         gestureEnabled: false,
                     }}  
-                    >
-                        {() => <SignInScreen onSignIn={() => setAuthenticated(true)} />}
-                    </Stack.Screen>
+                    />
                     <Stack.Screen 
                     name="SignUp" 
                     component={SignUpScreen}
